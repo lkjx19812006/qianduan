@@ -166,6 +166,9 @@ export default {
   },
   methods: {
     handleChange(val) {
+      if(!val){
+        return;
+      }
       this.statusShow = true;
       let _self = this;
       let url = common.urlCommon + common.apiUrl.most;

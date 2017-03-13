@@ -82,7 +82,6 @@ let httpService = new Vue({
       return new Promise((resolve, reject) => {
         axios.post(url, data)
           .then(function (response) {
-            console.log(response.data)
             if (response.data.code === '1c01' || response.data.code === 200) {
               resolve(response.data);
             } else {

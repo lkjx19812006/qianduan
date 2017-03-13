@@ -28,7 +28,7 @@
       <el-button type="primary" @click="getHttp()" icon="search">搜索</el-button>
     </div>
     <el-row>
-      <el-col :span="18">
+      <el-col :span="15">
         <div class="table">
           <el-table v-bind:data="resourceList" border style="width:100%;max-width:874px" max-height="550" highlight-current-row @current-change="handleChange" v-loading.body="loading">
             <el-table-column prop="name" label="名称" width="150">
@@ -49,14 +49,14 @@
           </el-table>
         </div>
       </el-col>
-      <el-col :span="6">
+      <el-col :span="9">
         <div class="table">
-          <el-table v-bind:data="trackArr" border style="width:100%;" max-height="550" v-loading.body="statusShow">
+          <el-table v-bind:data="trackArr" border style="width:100%;max-width: 700px" max-height="550" v-loading.body="statusShow">
             <el-table-column prop="employeeName" label="客服名称" width="100">
             </el-table-column>
-            <el-table-column prop="remarks" label="联系内容" width="200">
+            <el-table-column prop="remarks" label="联系内容" width="300">
             </el-table-column>
-            <el-table-column label="创建时间" width="120">
+            <el-table-column label="创建时间" width="200">
               <template scope="scope">
                 <span>{{trackArr[scope.$index].createTime|formatTime}}</span>
               </template>
@@ -126,6 +126,7 @@ export default {
   methods: {
     recieveTrack() {
       this.dialogShow = false;
+      this.handleChange(this.trackParam);
     },
     edit(index) {
       this.trackParam = this.resourceList[index];

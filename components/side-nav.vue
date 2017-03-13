@@ -22,7 +22,7 @@ a {
     <div class="logo">
     </div>
     <el-menu v-bind:default-active="getDefaultIndex" class="el-menu-vertical-demo">
-      <template v-for="(item,index) in urlArr">
+      <template v-for="(item,index) in getList">
         <el-submenu v-bind:index="menuIndex(index)" v-if="item.children">
           <template slot="title">
             <i class="el-icon-message"></i>{{item.name}}
@@ -56,28 +56,13 @@ export default {
     return {
       wrapperHeight: '',
       deIndex: '0',
-      urlArr: [{
-        "name": "主页",
-        "path": "/",
-        "index": "0"
-      }, {
-        "name": "资源列表",
-        "index": "1",
-        "children": [{
-          "path": "/allResource",
-          "title": "全部资源",
-          "index": "1-0"
-        }, {
-          "path": "/myResource",
-          "title": "我的资源",
-          "index": "1-1"
-        }]
-      }]
+      urlArr: []
     }
   },
   computed: {
     getDefaultIndex() {
       let _self = this;
+
       function getIndex(arr) {
         for (var j in arr) {
           if (_self.$route.path.indexOf(arr[j].path) > 0) {
@@ -88,8 +73,43 @@ export default {
           }
         }
       }
-      getIndex(_self.urlArr);
+      getIndex(_self.getList);
       return _self.deIndex;
+    },
+    getList() {
+      if (this.$store.state.user.user.id === 100021) {
+        return [{
+          "name": "主页",
+          "path": "/",
+          "index": "0"
+        }, {
+          "name": "资源列表",
+          "index": "1",
+          "children": [{
+            "path": "/allResource",
+            "title": "全部资源",
+            "index": "1-0"
+          }, {
+            "path": "/myResource",
+            "title": "我的资源",
+            "index": "1-1"
+          }]
+        }]
+      }else{
+        return [{
+          "name": "主页",
+          "path": "/",
+          "index": "0"
+        }, {
+          "name": "资源列表",
+          "index": "1",
+          "children": [{
+            "path": "/myResource",
+            "title": "我的资源",
+            "index": "1-0"
+          }]
+        }]
+      }
     }
 
   },

@@ -41,7 +41,7 @@ export default {
                 biz_module: 'dataService',
                 biz_method: 'addRecordInfo',
                 biz_param: {
-                  dataId: _self.trackParam.dataId,
+                  dataId: _self.trackParam.id,
                   remarks: _self.trackParam.title
                 }
               }
